@@ -59,13 +59,13 @@
 - name: Create password file with htpasswd
   shell: htpasswd -bc /etc/nginx/.htpasswd admin admin
 
-- name: Restart rethinkdb
+- name: Restart and Enable rethinkdb
   service:
     name: rethinkdb
     state: restarted
     enabled: yes
     
-- name: Restart rethinkdb
+- name: Restart nginx
   service:
     name: nginx
     state: restarted
