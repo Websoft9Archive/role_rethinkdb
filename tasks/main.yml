@@ -61,12 +61,14 @@
 
 - name: Restart rethinkdb
   service:
-    name: '{{item}}'
+    name: rethinkdb
     state: restarted
     enabled: yes
-  with_items:
-    - rethinkdb
-    - nginx
+    
+- name: Restart rethinkdb
+  service:
+    name: nginx
+    state: restarted
 
 # connect rethinkdb
 - name: Install rethinkdb
