@@ -17,7 +17,7 @@
     state: touch
     owner: rethinkdb
     group: rethinkdb
-    mode: '0755'
+    mode: '0750'
     
 - name: Add rethinkdb data
   shell: | 
