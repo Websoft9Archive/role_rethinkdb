@@ -64,16 +64,17 @@
     name: rethinkdb
     executable: pip3
     
-- name: Restart and Enable rethinkdb
+- name: Restart rethinkdb
   service:
-    name: rethinkdb
+    name: '{{item}}'
     state: restarted
     enabled: yes
-    
-- name: Restart nginx
-  service:
-    name: nginx
-    state: restarted
+  with_items:
+    - rethinkdb
+    - nginx
+
+- name: Enable rethinkdb
+  shell: systemctl enable rethinkdb
   
 # Check version,
 - block:
