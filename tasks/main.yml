@@ -59,8 +59,7 @@
 - name: Create password file with htpasswd
   shell: htpasswd -bc /etc/nginx/.htpasswd admin admin
 
-# rethinkdb connect tool
-- name: Pip3 install rethinkdb must be before of enable rethinkdb service, or it will delete service softlink
+- name: Install rethinkdb connect tool
   pip: 
     name: rethinkdb
     executable: pip3
@@ -74,6 +73,9 @@
     - rethinkdb
     - nginx
 
+- name: Enable rethinkdb
+  shell: systemctl enable rethinkdb
+  
 # Check version,
 - block:
   - name: Check Rethinkdb Version
