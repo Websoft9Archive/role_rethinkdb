@@ -1,4 +1,5 @@
-rethinkdb_webui_remote: True
+# rethinkdb --bind-http localhost for webui
+rethinkdb_http_bind: "localhost"
 
 rethinkdb_admin_username: ""
 
