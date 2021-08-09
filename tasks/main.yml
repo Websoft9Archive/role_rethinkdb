@@ -56,6 +56,7 @@
     line: 'bind=0.0.0.0'
     state: present
     backrefs: yes
+  when: rethinkdb_remote
 
 - name: Insert nginx login validate 
   blockinfile:

@@ -3,3 +3,16 @@
   remote_user: root
   roles:
     - role_rethinkdb
+  vars_prompt:  
+    - name: 'rethinkdb_remote_selection'
+      prompt: "\nDo you want to enable rethinkdb remote connection? [ 1/2 ] \n\n
+      1: Yes\n
+      2: No\n"
+      private: no
+      default: 2
+  vars:
+    rethinkdb_remote_select:
+      '1': 'True'
+      '2': 'False'
+
+  rethinkdb_remote: "{{rethinkdb_remote_select[rethinkdb_remote_selection]}}"

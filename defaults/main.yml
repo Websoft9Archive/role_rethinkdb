@@ -5,3 +5,5 @@ rethinkdb_admin_username: ""
 
 # Rethinkdb admin (administrator user) password
 rethinkdb_admin_password: ""
+
+rethinkdb_remote: False
