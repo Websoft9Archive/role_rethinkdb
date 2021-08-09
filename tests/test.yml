@@ -15,4 +15,4 @@
       '1': 'True'
       '2': 'False'
 
-  rethinkdb_remote: "{{rethinkdb_remote_select[rethinkdb_remote_selection]}}"
+    rethinkdb_remote: "{{rethinkdb_remote_select[rethinkdb_remote_selection]}}"
