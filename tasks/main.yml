@@ -49,6 +49,14 @@
     state: present
     backrefs: yes
 
+- name: Configure rethinkdb data dir
+  lineinfile:
+    path: /etc/rethinkdb/instances.d/instance.conf
+    regexp: '^# bind='
+    line: 'bind=0.0.0.0'
+    state: present
+    backrefs: yes
+
 - name: Insert nginx login validate 
   blockinfile:
     path: /etc/nginx/conf.d/default.conf
@@ -59,7 +67,12 @@
 - name: Create password file with htpasswd
   shell: htpasswd -bc /etc/nginx/.htpasswd admin admin
 
-- name: Restart and Enable rethinkdb
+- name: Install rethinkdb connect tool
+  pip: 
+    name: rethinkdb
+    executable: pip3
+    
+- name: Restart rethinkdb
   service:
     name: rethinkdb
     state: restarted
@@ -70,12 +83,9 @@
     name: nginx
     state: restarted
 
-# connect rethinkdb
-- name: Install rethinkdb
-  pip: 
-    name: rethinkdb
-    executable: pip3
-
+- name: Enable rethinkdb
+  shell: systemctl enable rethinkdb
+  
 # Check version,
 - block:
   - name: Check Rethinkdb Version
