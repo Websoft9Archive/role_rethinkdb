@@ -4,6 +4,6 @@ rethinkdb_http_bind: "localhost"
 rethinkdb_admin_username: ""
 
 # Rethinkdb admin (administrator user) password
-rethinkdb_admin_password: "123456"
+rethinkdb_admin_password: ""
 
 rethinkdb_remote: True
