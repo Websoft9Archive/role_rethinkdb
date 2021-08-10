@@ -79,6 +79,10 @@
     state: restarted
     enabled: yes
     
+- name: Init RethinkDB admin password
+  shell: rethinkdb --initial-password {{rethinkdb_admin_password}}
+  when: rethinkdb_admin_password is defined and rethinkdb_admin_password != none   
+    
 - name: Restart nginx
   service:
     name: nginx
