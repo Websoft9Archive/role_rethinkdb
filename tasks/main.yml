@@ -35,7 +35,7 @@
   shell: cp /etc/rethinkdb/default.conf.sample  /etc/rethinkdb/instances.d/instance.conf
 
 - name: Copy rethinkdb service file
-  file:
+  copy:
     src: rethinkdb.service
     dest: /lib/systemd/system/rethinkdb.service
     
