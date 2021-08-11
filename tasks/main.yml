@@ -65,7 +65,7 @@
   when: rethinkdb_remote
 
 - name: Install rethinkdb connect tool
-  shell: pip3 install rethinkdb
+  shell: python3 -m pip install rethinkdb
     
 - name: Restart rethinkdb
   service:
