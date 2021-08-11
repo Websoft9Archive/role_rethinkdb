@@ -13,9 +13,7 @@
     gpgcheck: yes
     enabled: yes
 
-# install Rethinkdb
-# httpd-tools: get htpasswd 
-- name: Install RethinkDb and httpd-httpd
+- name: Install RethinkDb
   yum:
-    name: [rethinkdb,httpd-tools]
+    name: [rethinkdb]
     update_cache: yes

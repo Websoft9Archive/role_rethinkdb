@@ -18,18 +18,24 @@
     owner: rethinkdb
     group: rethinkdb
     mode: '0750'
-    
-- name: Add rethinkdb data
-  shell: | 
-    rethinkdb create -d /data/rethindb
-    chown -R rethinkdb.rethinkdb /data/rethindb
-  failed_when: false
+
+- block:
+  - name: Add RethinkDB data
+    shell: rethinkdb create --initial-password {{rethinkdb_admin_password}} -d {{rethinkdb_path}}
+    when: rethinkdb_admin_password != ""  
+
+  - name: Add RethinkDB data
+    shell: rethinkdb create -d {{rethinkdb_path}}
+    when: rethinkdb_admin_password == ""   
+
+- name: Chown RethinkDB data directory
+  shell: chown -R rethinkdb.rethinkdb {{rethinkdb_path}}
 
 - name: Copy rethinkdb configure file
   shell: cp /etc/rethinkdb/default.conf.sample  /etc/rethinkdb/instances.d/instance.conf
 
 - name: Copy rethinkdb service file
-  copy:
+  file:
     src: rethinkdb.service
     dest: /lib/systemd/system/rethinkdb.service
     
@@ -68,10 +74,6 @@
     name: rethinkdb
     state: restarted
     enabled: yes
-    
-- name: Init RethinkDB admin password
-  shell: rethinkdb --initial-password {{rethinkdb_admin_password}}
-  when: rethinkdb_admin_password is defined and rethinkdb_admin_password != none   
     
 - name: Restart nginx
   service:

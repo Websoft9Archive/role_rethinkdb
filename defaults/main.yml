@@ -1,9 +1,9 @@
 # rethinkdb --bind-http localhost for webui
 rethinkdb_http_bind: "localhost"
 
-rethinkdb_admin_username: ""
+rethinkdb_path: "/data/rethindb"
 
-# Rethinkdb admin (administrator user) password
+# Rethinkdb admin (administrator user) password, you can set it value but you can't delete it or delete ""
 rethinkdb_admin_password: ""
 
 rethinkdb_remote: True
